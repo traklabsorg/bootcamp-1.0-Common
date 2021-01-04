@@ -1,152 +1,208 @@
 import { ServiceOperationResultType } from "./ServiceOperationResultType";
-import {Message} from "./Message"
-import { DtoBase } from "./DtoBase";
+import { Message } from "./Message";
+import { DtoBase } from "../../platform-3.0-Dtos/DtoBase";
 // import { TDto } from "../../app/3.1 dtos/TDto";
-// export class ResponseModel<T extends TDto> 
+// export class ResponseModel<T extends TDto>
 export class ResponseModel<TDto extends DtoBase> {
+  private RequestId: string;
+  private DataCollection: TDto[] | null;
+  private ResultType: number;
+  private Status: Message | null;
+  private Messages: Array<Message> | null;
 
-    private RequestId : string;
-    private DataCollection : TDto[] |  null;
-    private ResultType : number;
-    private Status : Message|null;
-    private Messages: Array<Message>| null;
+  private SocketId: string;
 
-    private SocketId: string; 
+  private CommunityUrl: string;
 
-    private CommunityUrl: string;
+  constructor(
+    requestId: string,
+    data: Array<TDto> | null,
+    resultType: ServiceOperationResultType,
+    errorCode: string,
+    statusMessage: string | null,
+    localizedStatusMessage: string | null,
+    message: Array<Message> | null,
+    socketId: string,
+    communityUrl: string
+  ) {
+    this.RequestId = requestId;
+    this.DataCollection = data;
+    this.ResultType = resultType;
+    this.Status = new Message(
+      errorCode,
+      statusMessage,
+      localizedStatusMessage,
+      null
+    );
+    this.Messages = message;
+    this.SocketId = socketId;
+    this.CommunityUrl = communityUrl;
+  }
 
-    constructor(requestId: string,data:Array<TDto>|null,resultType:ServiceOperationResultType,
-        errorCode:string,statusMessage:string|null,localizedStatusMessage : string|null, 
-        message : Array<Message>| null,socketId:string,communityUrl:string) {
+  public getRequestId(): string {
+    return this.RequestId;
+  }
 
-            this.RequestId = requestId;
-            this.DataCollection = data;
-            this.ResultType = resultType;
-            this.Status = new Message(errorCode, statusMessage, localizedStatusMessage, null);
-            this.Messages = message;
-            this.SocketId = socketId;
-            this.CommunityUrl = communityUrl;
+  public setRequestId(RequestId: string): void {
+    this.RequestId = RequestId;
+  }
 
+  public getCommunityUrl(): string {
+    return this.CommunityUrl;
+  }
 
-    }
+  public setCommunityUrl(communityUrl: string) {
+    this.CommunityUrl = communityUrl;
+  }
 
-    public getRequestId(): string {
-        return this.RequestId;
-    }
+  public getDataCollection(): TDto[] | null {
+    return this.DataCollection;
+  }
 
-    public setRequestId(RequestId: string): void {
-        this.RequestId = RequestId;
-    }
+  public setDataCollection(DataCollection: TDto[]): void {
+    this.DataCollection = DataCollection;
+  }
 
-    public getCommunityUrl(): string{
-        return this.CommunityUrl;
-    }
+  public getResultType(): number {
+    return this.ResultType;
+  }
 
-    public setCommunityUrl(communityUrl: string) {
-        this.CommunityUrl = communityUrl;
-    }
+  public getData(): TDto | null {
+    let t_temp =
+      this.DataCollection != null && this.DataCollection[0] != null
+        ? (this.DataCollection[0] as TDto)
+        : null;
+    return t_temp;
+  }
 
+  //TODO
+  // public getDerivedType<D>(): ResponseModel<D>{
+  //     Object.create()
+  // }
 
-    public getDataCollection(): TDto[]|null {
-        return this.DataCollection;
-    }
+  // public ResponseModel<D> ToDerivedType<D>()
+  //         where D : class
+  //     {
+  //         var baseResponseModel = this;
+  //         var derivedResponseModel = new ResponseModel<D>(baseResponseModel.DataCollection.Cast<D>());
+  //         derivedResponseModel.RequestId = baseResponseModel.RequestId;
+  //         derivedResponseModel.ResultType = baseResponseModel.ResultType;
+  //         derivedResponseModel.Messages = baseResponseModel.Messages;
+  //         derivedResponseModel.Status = baseResponseModel.Status;
 
-    public setDataCollection(DataCollection: TDto[]): void {
-        this.DataCollection = DataCollection;
-    }
+  //         return derivedResponseModel;
+  //     }
 
-    public getResultType(): number {
-        return this.ResultType;
-    }
+  // public setResultType(ResultType: ServiceOperationResultType): void {
+  //     this.ResultType = ResultType;
+  // }
 
-    public getData(): TDto|null{
-        let t_temp = this.DataCollection!=null && this.DataCollection[0]!=null?
-        this.DataCollection[0] as TDto: null;
-        return t_temp;
-    }
+  // public getStatus(): Message {
+  //     return this.Status;
+  // }
+  public getSocketId(): string {
+    return this.SocketId;
+  }
+  public setSocketId(socketId: string): void {
+    this.SocketId = socketId;
+  }
+  public setStatus(Status: Message): void {
+    this.Status = Status;
+  }
 
-    //TODO
-    // public getDerivedType<D>(): ResponseModel<D>{
-    //     Object.create()
-    // }
+  public getMessages(): Array<Message> | null {
+    return this.Messages;
+  }
 
-    // public ResponseModel<D> ToDerivedType<D>()
-    //         where D : class
-    //     {
-    //         var baseResponseModel = this;
-    //         var derivedResponseModel = new ResponseModel<D>(baseResponseModel.DataCollection.Cast<D>());
-    //         derivedResponseModel.RequestId = baseResponseModel.RequestId;
-    //         derivedResponseModel.ResultType = baseResponseModel.ResultType;
-    //         derivedResponseModel.Messages = baseResponseModel.Messages;
-    //         derivedResponseModel.Status = baseResponseModel.Status;
+  // public setMessages(Messages: Array<Message>): void {
+  //     this.Messages = Messages;
+  // }
 
-    //         return derivedResponseModel;
-    //     }
+  // Get(id:number):ResponseModel<TDto>|null
+  CreateFailureResult(
+    requestId: string,
+    message: string,
+    messages: Array<Message>,
+    localizedMessage: string = "",
+    validationCode: string = "",
+    socketId: string = "",
+    communityUrl: string = ""
+  ): ResponseModel<TDto> | null {
+    return new ResponseModel<TDto>(
+      requestId,
+      null,
+      ServiceOperationResultType.failure,
+      validationCode,
+      message,
+      localizedMessage,
+      messages,
+      socketId,
+      communityUrl
+    );
+    //return new ResponseModel<T>(requestId, null
+  }
+  CreateErrorResult(
+    requestId: string,
+    errorCode: string,
+    message: string = "",
+    localizedMessage: string = "",
+    socketId: string = "",
+    communityUrl: string = ""
+  ): ResponseModel<TDto> {
+    return new ResponseModel<TDto>(
+      requestId,
+      null,
+      ServiceOperationResultType.error,
+      errorCode,
+      message,
+      localizedMessage,
+      null,
+      socketId,
+      communityUrl
+    );
+  }
+  // CreateErrorResult1(requestId:string , errorCode:string , message:string,localizedMessage:string=""):ResponseModel<T>
+  // {
+  //     return new ResponseModel<T>(requestId, null, ServiceOperationResultType.error, errorCode, "","", null);
+  // }
+  CreateSuccessResult(
+    requestId: string,
+    data: Array<TDto>,
+    message: string | null,
+    messages: Array<Message> | null,
+    localizedMessage: string | null,
+    socketId: string = "",
+    communityUrl: string = ""
+  ) {
+    return new ResponseModel<TDto>(
+      requestId,
+      data,
+      ServiceOperationResultType.success,
+      "200",
+      message,
+      localizedMessage != null ? localizedMessage : null,
+      messages,
+      socketId,
+      communityUrl
+    );
+  }
 
+  public echo<D>(arg: D): D {
+    return arg;
+  }
 
-    // public setResultType(ResultType: ServiceOperationResultType): void {
-    //     this.ResultType = ResultType;
-    // }
+  // public ToDerivedType<D>
 
-    // public getStatus(): Message {
-    //     return this.Status;
-    // }
-    public getSocketId(): string{
-        return this.SocketId;
-    }
-    public setSocketId(socketId: string): void{
-        this.SocketId = socketId;
-    }
-    public setStatus(Status: Message): void {
-        this.Status = Status;
-    }
+  // public ResponseModel<D> ToDerivedType<D>()
+  //         where D : class
+  //     {
+  //         var baseResponseModel = this;
+  //         var derivedResponseModel = new ResponseModel<D>(baseResponseModel.DataCollection.Cast<D>());
+  //         derivedResponseModel.RequestId = baseResponseModel.RequestId;
+  //         derivedResponseModel.ResultType = baseResponseModel.ResultType;
+  //         derivedResponseModel.Messages = baseResponseModel.Messages;
+  //         derivedResponseModel.Status = baseResponseModel.Status;
 
-    public getMessages(): Array<Message> | null {
-        return this.Messages;
-    }
-
-    // public setMessages(Messages: Array<Message>): void {
-    //     this.Messages = Messages;
-    // }
-
-   
-    // Get(id:number):ResponseModel<TDto>|null
-     CreateFailureResult(requestId: string, message: string, messages: Array<Message>, localizedMessage: string = "", validationCode: string = "",socketId: string = "",communityUrl: string = ""): ResponseModel<TDto> | null{
-
-        return new ResponseModel<TDto>(requestId, null,ServiceOperationResultType.failure, validationCode, message, localizedMessage, messages,socketId,communityUrl);
-//return new ResponseModel<T>(requestId, null
-
-    }
-     CreateErrorResult(requestId:string , errorCode:string ,message:string="",localizedMessage:string="",socketId: string = "",communityUrl: string = ""):ResponseModel<TDto> 
-    {
-        return new ResponseModel<TDto>(requestId, null, ServiceOperationResultType.error, errorCode, message,localizedMessage, null,socketId,communityUrl);
-    }
-    // CreateErrorResult1(requestId:string , errorCode:string , message:string,localizedMessage:string=""):ResponseModel<T> 
-    // {
-    //     return new ResponseModel<T>(requestId, null, ServiceOperationResultType.error, errorCode, "","", null);
-    // }
-     CreateSuccessResult(requestId: string, data: Array<TDto>, message: string|null, messages: Array<Message>|null, localizedMessage:string|null,socketId: string = "",communityUrl: string = "") {
-        
-        return new ResponseModel<TDto>(requestId, data, ServiceOperationResultType.success, "200", message, localizedMessage!=null?localizedMessage:null, messages,socketId,communityUrl )
-    }
-
-    public echo<D>(arg: D): D{
-        return arg;
-    }
-
-    // public ToDerivedType<D> 
-
-    // public ResponseModel<D> ToDerivedType<D>()
-    //         where D : class
-    //     {
-    //         var baseResponseModel = this;
-    //         var derivedResponseModel = new ResponseModel<D>(baseResponseModel.DataCollection.Cast<D>());
-    //         derivedResponseModel.RequestId = baseResponseModel.RequestId;
-    //         derivedResponseModel.ResultType = baseResponseModel.ResultType;
-    //         derivedResponseModel.Messages = baseResponseModel.Messages;
-    //         derivedResponseModel.Status = baseResponseModel.Status;
-
-    //         return derivedResponseModel;
-    //     }
+  //         return derivedResponseModel;
+  //     }
 }
-
