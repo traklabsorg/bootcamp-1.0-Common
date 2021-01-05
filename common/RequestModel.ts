@@ -2,7 +2,7 @@ import { RequestModelBase } from "./requestModelBase";
 import { Filter } from "./filter";
 // import {Condition} from "./condition";
 // import { CultureInfo } from "./cultureInfo";
-import { DtoBase } from "../../platform-3.0-Dtos/DtoBase";
+import { DtoBase } from "./../../../../platform-3.0-Dtos/DtoBase";
 import { Guid } from "./guid";
 
 //************** REQUEST MODEL FOR PUT/POST/DELETE **************************************** */
