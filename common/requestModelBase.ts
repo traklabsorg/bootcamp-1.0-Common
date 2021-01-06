@@ -3,14 +3,14 @@ import {CultureInfo} from "./cultureInfo";
 
 export abstract class RequestModelBase{
 
-	private UniqueConsumerIdentifier!: string;
-    private AccessToken!: string;
-    private UserName!: string;
-    private TenantId!: number;
-    private IsRequestFromBackgroundService!: boolean;
-    private version!: string;
-    public RequestGuid!: string;
-    private CultureInformation!: string;
+	protected UniqueConsumerIdentifier!: string;
+    protected AccessToken!: string;
+    protected UserName!: string;
+    protected TenantId!: number;
+    protected IsRequestFromBackgroundService!: boolean;
+    protected version!: string;
+    protected RequestGuid!: string;
+    protected CultureInformation!: string;
 
     // private guid_obj = new Guid();
     // private culture_obj = new CultureInfo();

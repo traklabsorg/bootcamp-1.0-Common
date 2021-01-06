@@ -5,6 +5,8 @@ export class RequestModelQuery extends RequestModelBase
     {
         public Children: Array<string>;
         public Filter: Filter;
+        //public AccessToken:string;
+
         //Empty constructor
         constructor() {
             super(0,"","");
