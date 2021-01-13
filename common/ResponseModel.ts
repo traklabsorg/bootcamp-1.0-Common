@@ -1,8 +1,6 @@
 import { ServiceOperationResultType } from "./ServiceOperationResultType";
 import { Message } from "./Message";
-import { DtoBase } from "./../../../../platform-3.0-Dtos/DtoBase";
-// import { TDto } from "../../app/3.1 dtos/TDto";
-// export class ResponseModel<T extends TDto>
+import { DtoBase } from "./DtoBase";
 export class ResponseModel<TDto extends DtoBase> {
   private RequestId: string;
   private DataCollection: TDto[] | null;
