@@ -29,8 +29,7 @@ export class ResponseModel<TDto extends DtoBase> {
     this.Status = new Message(
       errorCode,
       statusMessage,
-      localizedStatusMessage,
-      null
+      localizedStatusMessage
     );
     this.Messages = message;
     this.SocketId = socketId;

@@ -32,7 +32,7 @@ export class Message{
 
 
 
-    constructor(errorcode:string,statusmessage:string|null,localstatusmessage:string|null,sansip_sir_ask:string| null){
+    constructor(errorcode:string,statusmessage:string|null,localstatusmessage:string|null){
         this.errorCode = errorcode;
         this.localStatusMessage = localstatusmessage;
         this.statusMessage = statusmessage;
