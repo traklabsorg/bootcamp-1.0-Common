@@ -5,7 +5,7 @@
 export class DtoBase {
 
   constructor() {
-      this.Id = 5;
+      // this.Id = null;
       this.ModifiedBy= 0;
       this.CreatedBy = 0;
       this.AutoOffset = 0;
