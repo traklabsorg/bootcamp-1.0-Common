@@ -40,6 +40,10 @@ export class ResponseModel<TDto extends DtoBase> {
     return this.RequestId;
   }
 
+  // public setErrorCode(code:string): void{
+  //   this.Status.setErrorCode(code);
+  // }
+
   public setRequestId(RequestId: string): void {
     this.RequestId = RequestId;
   }

@@ -1,4 +1,3 @@
-
 export class Message{
 
     private errorCode:string;
