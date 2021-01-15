@@ -29,8 +29,7 @@ export class ResponseModel<TDto extends DtoBase> {
     this.Status = new Message(
       errorCode,
       statusMessage,
-      localizedStatusMessage,
-      null
+      localizedStatusMessage
     );
     this.Messages = message;
     this.SocketId = socketId;
@@ -40,6 +39,10 @@ export class ResponseModel<TDto extends DtoBase> {
   public getRequestId(): string {
     return this.RequestId;
   }
+
+  // public setErrorCode(code:string): void{
+  //   this.Status.setErrorCode(code);
+  // }
 
   public setRequestId(RequestId: string): void {
     this.RequestId = RequestId;
