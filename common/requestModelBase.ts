@@ -53,6 +53,10 @@ export abstract class RequestModelBase{
 		this.UniqueConsumerIdentifier = value;
 	}
 
+	public getRequestGuid():string {
+		return this.RequestGuid;
+	}
+
 	public setAccessToken(value: string) {
 		this.AccessToken = value;
 	}

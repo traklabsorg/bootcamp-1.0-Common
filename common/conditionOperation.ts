@@ -1,5 +1,5 @@
 
 export enum ConditionalOperation{
-    And,
-    Or
+    And = 1,
+    Or = 2
 }
