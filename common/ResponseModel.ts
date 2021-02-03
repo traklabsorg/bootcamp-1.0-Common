@@ -52,6 +52,12 @@ export class ResponseModel<TDto extends DtoBase> {
     return this.CommunityUrl;
   }
 
+
+  public setMessage(statusCode:string,input_message:string):void{
+    let message = new Message(statusCode,input_message,null);
+    this.Status = message;
+  }
+
   public setCommunityUrl(communityUrl: string) {
     this.CommunityUrl = communityUrl;
   }
