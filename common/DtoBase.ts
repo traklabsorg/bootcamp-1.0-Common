@@ -8,11 +8,11 @@ export class DtoBase {
       // this.Id = null;
       this.ModifiedBy= 0;
       this.CreatedBy = 0;
-      this.AutoOffset = 0;
+      // this.AutoOffset = 0;
       this.RowVersion = 0; // new Buffer("abc");
       this.CreationDate = new Date(); 
       this.ModifiedDate = new Date();
-      this.EntityState = 0;
+      // this.EntityState = 0;
   }
 
   //let date = new Date(); //gives current date in date format
@@ -35,7 +35,7 @@ export class DtoBase {
   RowVersion: number;
   
   // @Column({name:'auto_offset',type: 'integer',nullable:true})
-  AutoOffset: number;
+  // AutoOffset: number;
 
-  EntityState: number;      // 1 = create, 2 = update, 3 = delete,  0 = unchanged
+  // EntityState: number;      // 1 = create, 2 = update, 3 = delete,  0 = unchanged
 }
