@@ -16,6 +16,7 @@ export class RequestModel<TDto extends DtoBase> extends RequestModelBase {
   public token: string;
   public CommunityUrl: string;
   public RequestGuid: string;
+  public zoomToken:string;
 
   constructor() {
     //TODO: GENERATE THE TENANT ID, CULTURE AND REQUEST ID INSIDE BASE CLASS
