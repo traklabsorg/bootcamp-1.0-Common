@@ -7,6 +7,7 @@ export class ResponseModel<TDto extends DtoBase> {
   private ResultType: number;
   private Status: Message | null;
   private Messages: Array<Message> | null;
+  public zoomToken: string;
 
   private SocketId: string;
 
