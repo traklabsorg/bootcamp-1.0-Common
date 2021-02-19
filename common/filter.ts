@@ -1,52 +1,58 @@
-import {Page} from "./page";
-import {Condition} from "./condition";
+import { Page } from "./page";
+import { Condition } from "./condition";
 
-export class Filter{
+export enum RequestType {
+  EXPLICIT, // user id will not be feed by api gateway
+  IMPLICIT, // user id will be feed by api gateway with And condition
+  BOTH, // user id will be feed by api gateway with Or condition
+}
 
-    public OrderByField: string;
-    public IsOrderByFieldAsc: boolean;
-    public Conditions: Array<Condition>;
-    public PageInfo:Page;
-    // static Conditions: any;
+export class Filter {
+  public OrderByField: string;
+  public IsOrderByFieldAsc: boolean;
+  public Conditions: Array<Condition>;
+  public PageInfo: Page;
+  public RequestType: RequestType;
 
-    constructor(){
-      this.OrderByField = "";
-      this.IsOrderByFieldAsc = false;
-      this.Conditions = [];
-      this.PageInfo = new Page;
-    }
+  // static Conditions: any;
 
-    // public getConditions(): Array<Condition> {
-		//   return this.Conditions;
-	  // }
+  constructor() {
+    this.OrderByField = "";
+    this.IsOrderByFieldAsc = false;
+    this.Conditions = [];
+    this.PageInfo = new Page();
+    this.RequestType = RequestType.IMPLICIT;
+  }
 
-	  // public setConditions(value: Array<Condition>) {
-		//   this.Conditions = value;
-    // }
+  // public getConditions(): Array<Condition> {
+  //   return this.Conditions;
+  // }
 
-    // public getPageInfo(): Page {
-    //   return this.PageInfo;
-    // }
+  // public setConditions(value: Array<Condition>) {
+  //   this.Conditions = value;
+  // }
 
-    // public setPageInfo(value: Page) {
-    //   this.PageInfo = value;
-    // }
+  // public getPageInfo(): Page {
+  //   return this.PageInfo;
+  // }
 
-    // public getOrderByField(): string {
-    //   return this.OrderByField;
-    // }
+  // public setPageInfo(value: Page) {
+  //   this.PageInfo = value;
+  // }
 
-    // public setOrderByField(value: string) {
-    //   this.OrderByField = value;
-    // }
+  // public getOrderByField(): string {
+  //   return this.OrderByField;
+  // }
 
-    // public getIsOrderByFieldAsc(): boolean {
-    //   return this.IsOrderByFieldAsc;
-    // }
+  // public setOrderByField(value: string) {
+  //   this.OrderByField = value;
+  // }
 
-    // public setIsOrderByFieldAsc(value: boolean) {
-    //   this.IsOrderByFieldAsc = value;
-    // }
-    
-    
+  // public getIsOrderByFieldAsc(): boolean {
+  //   return this.IsOrderByFieldAsc;
+  // }
+
+  // public setIsOrderByFieldAsc(value: boolean) {
+  //   this.IsOrderByFieldAsc = value;
+  // }
 }
