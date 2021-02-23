@@ -17,7 +17,7 @@ export class Filter {
   // static Conditions: any;
 
   constructor() {
-    this.OrderByField = "";
+    // this.OrderByField = "";q
     this.IsOrderByFieldAsc = false;
     this.Conditions = [];
     this.PageInfo = new Page();
