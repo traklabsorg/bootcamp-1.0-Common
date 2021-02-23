@@ -9,6 +9,7 @@ export class Condition{
     public OperatorSymbol!: FieldOperaton;
     public ConditionalSymbol!: ConditionalOperation;
     public TypeName!: string;
+    
 
     Condition(filedName:string,fieldValue:any,operatorSymbol:FieldOperaton,conditionalSymbol:ConditionalOperation,isCaseInSensitiveSearch:boolean=false){
         
@@ -17,6 +18,7 @@ export class Condition{
         this.OperatorSymbol = operatorSymbol;
         this.ConditionalSymbol = conditionalSymbol;
         this.IsCaseInSensitiveSearch = isCaseInSensitiveSearch;
+        
 
     }
 }
