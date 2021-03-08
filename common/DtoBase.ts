@@ -6,8 +6,8 @@ export class DtoBase {
 
   constructor() {
       // this.Id = null;
-      this.ModifiedBy= 0;
-      this.CreatedBy = 0;
+      // this.ModifiedBy= 0;
+      // this.CreatedBy = 0;
       // this.AutoOffset = 0;
       this.RowVersion = 0; // new Buffer("abc");
       this.CreationDate = new Date(); 
