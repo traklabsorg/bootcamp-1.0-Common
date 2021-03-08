@@ -15,6 +15,7 @@ export class RequestModel<TDto extends DtoBase> extends RequestModelBase {
 
   public token: string;
   public CommunityUrl: string;
+  public CommunityId: number;
   public RequestGuid: string;
   public zoomToken:string;
 
@@ -27,6 +28,7 @@ export class RequestModel<TDto extends DtoBase> extends RequestModelBase {
     this.SocketId = "";
     this.token = "";
     this.CommunityUrl = "sample_community_url";
+    this.CommunityId = 0;
     this.RequestGuid = "sample_guid";
 
     // let filter = new Filter();
