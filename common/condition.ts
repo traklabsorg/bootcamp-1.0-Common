@@ -16,7 +16,7 @@ export class Condition{
         this.FieldName = filedName;
         this.FieldValue = fieldValue;
         this.OperatorSymbol = operatorSymbol;
-        this.ConditionalSymbol = conditionalSymbol;
+        this.ConditionalSymbol = conditionalSymbol != null? conditionalSymbol : ConditionalOperation.And;
         this.IsCaseInSensitiveSearch = isCaseInSensitiveSearch;
         
 
