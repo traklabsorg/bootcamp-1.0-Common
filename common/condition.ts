@@ -11,15 +11,8 @@ export class Condition{
     public TypeName!: string;
     
 
-    Condition(filedName:string,fieldValue:any,operatorSymbol:FieldOperaton,conditionalSymbol:ConditionalOperation,isCaseInSensitiveSearch:boolean=false){
-        
-        this.FieldName = filedName;
-        this.FieldValue = fieldValue;
-        this.OperatorSymbol = operatorSymbol;
-        this.ConditionalSymbol = conditionalSymbol != null? conditionalSymbol : ConditionalOperation.And;
-        this.IsCaseInSensitiveSearch = isCaseInSensitiveSearch;
-        
-
+    constructor(){
+        this.ConditionalSymbol = ConditionalOperation.And;
     }
 }
 
