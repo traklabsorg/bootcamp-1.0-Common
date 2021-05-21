@@ -13,6 +13,7 @@ export class Condition{
 
     constructor(){
         this.ConditionalSymbol = ConditionalOperation.And;
+        this.IsCaseInSensitiveSearch=true;
     }
 }
 
